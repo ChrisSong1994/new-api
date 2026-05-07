@@ -16,7 +16,7 @@ const GENERAL_SECTIONS = [
       <SystemInfoSection
         defaultValues={{
           theme: {
-            frontend: settings['theme.frontend'] as 'default' | 'classic',
+            frontend: 'default',
           },
           Notice: settings.Notice,
           SystemName: settings.SystemName,

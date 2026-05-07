@@ -30,7 +30,7 @@ import { useUpdateOption } from '../hooks/use-update-option'
 
 const _systemInfoSchema = z.object({
   theme: z.object({
-    frontend: z.enum(['default', 'classic']),
+    frontend: z.literal('default'),
   }),
   Notice: z.string().optional(),
   SystemName: z.string().min(1),
@@ -62,8 +62,7 @@ export function SystemInfoSection({ defaultValues }: SystemInfoSectionProps) {
 
   const normalizedDefaults: SystemInfoFormValues = {
     theme: {
-      frontend:
-        defaultValues.theme?.frontend === 'classic' ? 'classic' : 'default',
+      frontend: 'default',
     },
     Notice: normalizeValue(defaultValues.Notice),
     SystemName: normalizeValue(defaultValues.SystemName),
@@ -80,7 +79,7 @@ export function SystemInfoSection({ defaultValues }: SystemInfoSectionProps) {
 
   const systemInfoSchemaWithI18n = z.object({
     theme: z.object({
-      frontend: z.enum(['default', 'classic']),
+      frontend: z.literal('default'),
     }),
     Notice: z.string().optional(),
     SystemName: z.string().min(1, {
@@ -146,14 +145,11 @@ export function SystemInfoSection({ defaultValues }: SystemInfoSectionProps) {
                       <SelectItem value='default'>
                         {t('Default (New Frontend)')}
                       </SelectItem>
-                      <SelectItem value='classic'>
-                        {t('Classic (Legacy Frontend)')}
-                      </SelectItem>
                     </SelectContent>
                   </Select>
                   <FormDescription>
                     {t(
-                      'Switch between the new frontend and the classic frontend. Changes take effect after page reload.'
+                      'The frontend theme for the application.'
                     )}
                   </FormDescription>
                   <FormMessage />
@@ -193,7 +189,7 @@ export function SystemInfoSection({ defaultValues }: SystemInfoSectionProps) {
                 <FormItem>
                   <FormLabel>{t('System Name')}</FormLabel>
                   <FormControl>
-                    <Input placeholder={t('New API')} {...field} />
+                    <Input placeholder={t('7X API')} {...field} />
                   </FormControl>
                   <FormDescription>
                     {t('The name displayed across the application')}
@@ -297,7 +293,7 @@ export function SystemInfoSection({ defaultValues }: SystemInfoSectionProps) {
                   <FormLabel>{t('Home Page Content')}</FormLabel>
                   <FormControl>
                     <Textarea
-                      placeholder={t('Welcome to our New API...')}
+                      placeholder={t('Welcome to our 7X API...')}
                       rows={6}
                       {...field}
                     />
